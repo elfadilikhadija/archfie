@@ -9,4 +9,7 @@ class AdminCOntroller extends Controller
     public function index (){
         return view('admine.home');
     }
+    public function dossier (){
+        return view('admine.dossiers');
+    }
 }
