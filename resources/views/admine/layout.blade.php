@@ -17,13 +17,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poltawski+Nowy&display=swap" rel="stylesheet">
     <style>
         img{
-            width: 8%;
+            width: 5%;
             margin-right:10%;
+            margin-left:3%;
+
         }
         body{
             font-family: 'Merriweather', serif;
             font-family: 'Poltawski Nowy', serif;
 
+        }
+        nav{
+            font-size: 20px;
         }
 
         </style>
@@ -32,9 +37,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light fw-bold bg-white shadow-sm">
+            <img   src="{{ asset('images/r.png') }}" alt="Your Image">
+
             <div class="container">
-                <img   src="{{ asset('images/r.png') }}" alt="Your Image">
 
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,16 +49,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
 
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav  me-auto">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
+                            <a href="{{ route('admin.home') }}" class="nav-link">Acceiul</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admine.register') }}" class="nav-link">Create Account</a>
+                            <a href="{{ route('admine.register') }}" class="nav-link">Créer un compte</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admine.accounts') }}" class="nav-link">Manage Account</a>
+                            <a href="{{ route('admine.accounts') }}" class="nav-link">Liste d'itulisateurs</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admine.dossiers') }}" class="nav-link">Dossier</a>
@@ -70,7 +76,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit">Logout</button>
+                                    <button type="submit">se déconnecter</button>
                                 </form>
 
                             </div>
@@ -83,7 +89,6 @@
 
         <main class="py-4">
             <div class="container">
-                <!-- Your main content goes here -->
                 @yield('main')
             </div>
         </main>

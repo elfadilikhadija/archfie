@@ -27,6 +27,27 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="service_id" class="col-md-4 col-form-label text-md-end">{{ __('Service') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="service_id" class="form-select @error('service_id') is-invalid @enderror" name="service_id" required>
+                                    <option value="" disabled selected>Select a Service</option>
+                                        <option value="1">service 1</option>
+                                        <option value="2">service 2</option>
+                                        <option value="3">service 3</option>
+
+
+                                </select>
+
+                                @error('service_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="mb-3 row">
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
@@ -61,6 +82,20 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- <div class="col-md-6">
+                            <select id="division_id" name="division_id" class="form-control">
+                                <option value="" disabled selected>Select Service</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('division_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div> --}}
 
                         <div class="mb-3 row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>

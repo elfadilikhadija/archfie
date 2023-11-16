@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Service;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -25,15 +26,16 @@ class RegisterController extends Controller
 
      * @return void
      */
-    public function index(){
-        return view('admine.createAcc');
+        public function index()
+    {
+        $services = Service::all();
+        return view('admine.createAcc', compact('services'));
     }
 
     public function __construct()
     {
         $this->middleware('guest');
     }
-
 
 
     /**
@@ -48,7 +50,15 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'role' => $data['role'],
+            'service_id' => $data['service_id'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
     /**
      * @param  array  $data
      * @return \App\Models\User
@@ -60,12 +70,5 @@ class RegisterController extends Controller
 
          return view('admine.acounts', ['users' => $users]);
      }
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'role' => $data['role'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+
 }

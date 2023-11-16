@@ -9,4 +9,5 @@ class CadreController extends Controller
     public function index(){
         return view('cadre.home');
     }
+    
 }

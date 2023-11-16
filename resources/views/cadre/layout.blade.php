@@ -46,17 +46,12 @@
                     <ul class="navbar-nav me-auto">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
+                            <a href="{{ route('cadre.home') }}" class="nav-link">Acceuil</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admine.register') }}" class="nav-link">Create Account</a>
+                            <a href="{{ route('cadre.create') }}" class="nav-link">Ajouter une fichier</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admine.accounts') }}" class="nav-link">Manage Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admine.dossiers') }}" class="nav-link">Dossier</a>
-                        </li>
+
                     </ul>
 
 

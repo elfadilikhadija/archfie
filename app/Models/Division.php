@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Division extends Model
 {
     use HasFactory;
+    protected $fillable = [
+
+        'nom',
+    ];
+
+    public function mantoj()
+    {
+        return $this->hasMany(Service::class, 'division_id');
+    }
+    public function Fichier()
+    {
+        return $this->hasMany(Fichier::class, 'division_id');
+    }
 }

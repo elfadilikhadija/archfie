@@ -1,65 +1,103 @@
-@extends('layouts.app')
+@extends('admine.layout')
 
-@section('content')
+@section('main')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">
+                    <h2 class="text-center">{{ __('créer un compte') }}</h2>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="service_id" class="col-md-4 col-form-label text-md-end">{{ __('Service') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="service_id" class="form-select @error('service_id') is-invalid @enderror" name="service_id" required>
+                                    <option value="" disabled selected>Select a Service</option>
+                                        <option value="1">service 1</option>
+                                        <option value="2">service 2</option>
+                                        <option value="3">service 3</option>
+
+
+                                </select>
+
+                                @error('service_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+
+                        <div class="mb-3 row">
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
                                 <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
-                                    <option  selected>selecter un role</option>
-                                    <option value="cadre" >cadre</option>
-                                    <option value="sg">sg</option>
+                                    <option disabled selected>Choose a role</option>
+                                    <option value="cadre">Cadre</option>
+                                    <option value="sg">SG</option>
                                     <option value="admin">Admin</option>
-                                    <option value="chef">chef</option>
+                                    <option value="chef">Chef</option>
                                 </select>
 
                                 @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
+                        {{-- <div class="col-md-6">
+                            <select id="division_id" name="division_id" class="form-control">
+                                <option value="" disabled selected>Select Service</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
 
-                        <div class="row mb-3">
+                            @error('division_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div> --}}
+
+                        <div class="mb-3 row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
@@ -67,7 +105,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
@@ -80,4 +118,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -42,9 +42,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-
                     <ul class="navbar-nav me-auto">
-
                         <li class="nav-item">
                             <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
                         </li>

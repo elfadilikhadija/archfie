@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
+    protected $fillable = [
+
+        'nom',
+    ];
+
+    public function fichier()
+    {
+        return $this->hasMany(Fichier::class, 'categorie_id');
+    }
 }
