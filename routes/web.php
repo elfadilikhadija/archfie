@@ -32,11 +32,9 @@ Route::get('admin/dossiers', [AdminController::class, 'dossiers'])->name('admine
 
 
 
-Route::get('cadre/home', [CadreController::class, 'index'])->name('cadre.home');
+Route::get('cadre/home', [FichierController::class, 'index'])->name('cadre.home');
 Route::get('cadre/create', [FichierController::class, 'create'])->name('cadre.create');
 Route::post('cadre/create', [FichierController::class, 'store'])->name('fichiers.store');
-
-
 
 
 Route::get('sg/home', [SgController::class, 'index'])->name('sg.home');

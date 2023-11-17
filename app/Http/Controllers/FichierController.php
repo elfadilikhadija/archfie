@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
 use App\Models\Division;
+use App\Models\Fichier;
 
 class FichierController extends Controller
 {
@@ -13,6 +15,8 @@ class FichierController extends Controller
      */
     public function index()
     {
+        $fichiers = Fichier::paginate(10);
+        return view ('cadre.home' , ['fichiers' => $fichiers] );
 
     }
 
@@ -21,18 +25,16 @@ class FichierController extends Controller
      */
     public function create()
     {
-        $categorie = Categorie::all();
-        $division = Division::all();
+        $divisions = Division::all();
+        $categories = Categorie::all();
 
 
-         return view('cadre.create', ['categorie' => $categorie , 'division' => $division]);
+         return view('cadre.create', ['categories' => $categories , 'divisions' => $divisions]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
-{
+    {
     $request->validate([
         'objet' => 'required',
         'numero' => 'required',
@@ -41,52 +43,53 @@ class FichierController extends Controller
         'date' => 'required',
         'division_id' => 'required',
         'categorie_id' => 'required',
-        'fichier' => 'required|mimes:pdf|max:2048', // Validate PDF files only, max size 2MB
+        'fichier' => 'required|mimes:pdf|max:2048', // Validate
     ]);
 
-    // Handle file upload
     if ($request->hasFile('fichier')) {
         $file = $request->file('fichier');
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('pdfs', $fileName, 'public'); // Store in the 'pdfs' directory within the 'public' disk
+        $file->storeAs('public/pdfs', $fileName);
 
-        // Save the file name in the database
-        $request->merge(['fichier' => $fileName]);
+        Fichier::create([
+            'objet' => $request->objet,
+            'numero' => $request->numero,
+            'destinateurt' => $request->destinateurt,
+            'destinataire' => $request->destinataire,
+            'date' => $request->date,
+            'division_id' => $request->division_id,
+            'categorie_id' => $request->categorie_id,
+            'fichier' => 'public/pdfs/' . $fileName, // Save relative path
+        ]);
+
+        return redirect()->route('cadre.home')
+            ->with('success', 'File uploaded successfully.');
     }
 
-    Fichier::create($request->all());
-
-    return redirect()->route('fichiers.index')->with('success', 'Fichier created successfully.');
-}
 
 
-    /**
-     * Display the specified resource.
-     */
+
+    }
+
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         //

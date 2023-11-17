@@ -34,70 +34,48 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Objet</th>
-                    <th>Date</th>
-                    <th>Service</th>
+                    <th>Numero</th>
                     <th>Destinateur</th>
                     <th>Destinataire</th>
+                    <th>Date</th>
                     <th>Division</th>
+                    <th>Categorie</th>
                     <th>Fichier</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Table rows with data will be dynamically populated here -->
+                @foreach ($fichiers as $fichier)
                 <tr>
-                    <td>Objet 1</td>
-                    <td>2023-01-01</td>
-                    <td>Service A</td>
-                    <td>Destinateur A</td>
-                    <td>Destinataire A</td>
-                    <td>Division A</td>
-                    <td><a href="/path/to/file1.pdf">file1.pdf</a></td>
+                    <td>{{ $fichier->id }}</td>
+                    <td>{{ $fichier->objet }}</td>
+                    <td>{{ $fichier->numero }}</td>
+                    <td>{{ $fichier->destinateurt }}</td>
+                    <td>{{ $fichier->destinataire }}</td>
+                    <td>{{ $fichier->date }}</td>
+                    <td>{{ $fichier->division->nom }}</td>
+                    <td>{{ $fichier->categorie->nom }}</td>
+                    <td>
+                        <a href="{{ asset('public/pdfs', 'Open the pdf' . $fichier->fichier) }}">{{ $fichier->fichier }}</a>
+                    </td>
                     <td>
                         <button class="btn btn-sm btn-primary">Update</button>
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>Objet 2</td>
-                    <td>2023-01-02</td>
-                    <td>Service B</td>
-                    <td>Destinateur B</td>
-                    <td>Destinataire B</td>
-                    <td>Division B</td>
-                    <td><a href="/path/to/file2.pdf">file2.pdf</a></td>
-                    <td>
-                        <button class="btn btn-sm btn-primary">Update</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <!-- Additional rows go here -->
+                @endforeach
             </tbody>
         </table>
     </div>
 
     <div class="d-flex justify-content-end">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <span class="page-link">&laquo;</span>
-                </li>
-                <li class="page-item active" aria-current="page">
-                    <span class="page-link">1</span>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
-                </li>
-            </ul>
-        </nav>
+        {{ $fichiers->links() }}
     </div>
+
+
+
 </div>
 
 @endsection
