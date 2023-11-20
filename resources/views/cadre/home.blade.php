@@ -8,26 +8,43 @@
 <div class="">
     <div class="row mb-3">
         <div class="col-md-6">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Rechercher..." aria-label="Rechercher">
-                <button class="btn btn-outline-secondary" type="button">
+            <form method="POST" action="{{ route('fichiers.search') }}" class="input-group">
+                @csrf
+                <input type="text" class="form-control" name="query" placeholder="Rechercher..." aria-label="Rechercher">
+                <button class="btn btn-outline-secondary" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
+            </form>
+        </div>
+
+        <div class="btn-group" role="group">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-filter"></i> Filtrer par Catégorie
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                    @foreach($categories as $category)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('fichiers.filteredByCategory', $category->id) }}">
+                                {{ $category->nom }}
+                            </a>
+                        </li>
+                    @endforeach 
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="divisionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-filter"></i> Filtrer par Division
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="divisionDropdown">
+                    @foreach($divisions as $division)
+                        <li><a class="dropdown-item" href="{{ route('fichiers.filteredByDivision', $division->id) }}">{{ $division->nom }}</a></li>
+                    @endforeach
+                </ul>
             </div>
         </div>
-        <div class="col-md-6 text-end">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-secondary">
-                    <i class="bi bi-filter"></i> Filtrer par Destinateur
-                </button>
-                <button type="button" class="btn btn-outline-secondary">
-                    <i class="bi bi-filter"></i> Filtrer par Destinataire
-                </button>
-                <button type="button" class="btn btn-outline-secondary">
-                    <i class="bi bi-filter"></i> Filtrer par Date
-                </button>
-            </div>
-        </div>
+
     </div>
 
     <div class="table-responsive">
@@ -47,22 +64,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($fichiers as $fichier)
+                @foreach ($fichiers as $fich)
                 <tr>
-                    <td>{{ $fichier->id }}</td>
-                    <td>{{ $fichier->objet }}</td>
-                    <td>{{ $fichier->numero }}</td>
-                    <td>{{ $fichier->destinateurt }}</td>
-                    <td>{{ $fichier->destinataire }}</td>
-                    <td>{{ $fichier->date }}</td>
-                    <td>{{ $fichier->division->nom }}</td>
-                    <td>{{ $fichier->categorie->nom }}</td>
+                    <td>{{ $fich->id }}</td>
+                    <td>{{ $fich->objet }}</td>
+                    <td>{{ $fich->numero }}</td>
+                    <td>{{ $fich->destinateurt }}</td>
+                    <td>{{ $fich->destinataire }}</td>
+                    <td>{{ $fich->date }}</td>
+                    <td>{{ $fich->division->nom }}</td>
+                    <td>{{ $fich->categorie->nom }}</td>
                     <td>
-                        <a href="{{ asset('public/pdfs', 'Open the pdf' . $fichier->fichier) }}">{{ $fichier->fichier }}</a>
+                        <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-primary">Update</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <a href="{{ route('fichiers.edit', ['id' => $fich->id]) }}" class="btn btn-sm btn-primary">Update</a>
+                        <form action="{{ route('fichiers.destroy', ['id' => $fich->id]) }}" method="POST" class="delete-form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -74,7 +95,11 @@
         {{ $fichiers->links() }}
     </div>
 
-
+    <script>
+        function confirmDelete() {
+            return confirm('Voulez-vous supprimer ce fichier ?');
+        }
+    </script>
 
 </div>
 

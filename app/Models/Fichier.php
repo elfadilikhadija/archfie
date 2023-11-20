@@ -16,6 +16,7 @@ class Fichier extends Model{
     'division_id',
     'categorie_id',
     'fichier',
+    'archiver'
 ];
 
 
