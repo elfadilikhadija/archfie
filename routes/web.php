@@ -38,7 +38,7 @@ Route::post('cadre/create', [FichierController::class, 'store'])->name('fichiers
 Route::delete('/cadre/{id}', [FichierController::class, 'destroy'])->name('fichiers.destroy');
 Route::get('/cadre/{id}/edit', [FichierController::class, 'edit'])->name('fichiers.edit');
 Route::patch('/cadre/{id}', [FichierController::class, 'update'])->name('fichiers.update');
-Route::post('/cqdre/search', [FichierController::class, 'search'])->name('fichiers.search');
+Route::post('/cadre/search', [FichierController::class, 'search'])->name('fichiers.search');
 Route::get('/cadre/category/{categoryId}', [FichierController::class, 'filteredByCategory'])->name('fichiers.filteredByCategory');
 Route::get('/cadre/division/{division}', [FichierController::class, 'filteredByDivision'])->name('fichiers.filteredByDivision');
 

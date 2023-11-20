@@ -77,19 +77,25 @@ class FichierController extends Controller
         return view('cadre.update', compact('fichier', 'divisions', 'categories'));
     }
 
-        public function search(Request $request)
+    public function search(Request $request)
     {
+        $categories = Categorie::all();
+        $divisions = Division::all();
         $query = $request->input('query');
 
-        $fichiers = Fichier::where('objet', 'like', '%' . $query . '%')
-                            ->orWhere('numero', 'like', '%' . $query . '%')
-                            ->orWhere('destinateurt', 'like', '%' . $query . '%')
-                            ->orWhere('destinataire', 'like', '%' . $query . '%')
-                            ->orWhere('date', 'like', '%' . $query . '%')
-                            ->paginate(10);
+        $fichiers = Fichier::where('archiver', false)
+            ->where(function ($q) use ($query) {
+                $q->where('objet', 'like', '%' . $query . '%')
+                    ->orWhere('numero', 'like', '%' . $query . '%')
+                    ->orWhere('destinateurt', 'like', '%' . $query . '%')
+                    ->orWhere('destinataire', 'like', '%' . $query . '%')
+                    ->orWhere('date', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
 
-        return view('cadre.home', ['fichiers' => $fichiers]);
+        return view('cadre.home', compact('fichiers', 'categories', 'divisions'));
     }
+
 
 
      public function update(Request $request, $id)
@@ -139,18 +145,24 @@ class FichierController extends Controller
 
         public function filteredByCategory(Request $request, $categoryId)
         {
-            $fichiers = Fichier::where('categorie_id', $categoryId)->paginate(10);
-            return view('cadre.home', ['fichiers' => $fichiers]);
+            $categories = Categorie::all();
+            $divisions = Division::all();
+
+            $fichiers = Fichier::where('archiver', false)
+                ->where('categorie_id', $categoryId)
+                ->paginate(10);
+
+            return view('cadre.home', compact('fichiers', 'categories', 'divisions'));
         }
+
 
 
     public function filteredByDivision(Request $request, $division)
     {
-
+        $divisions = Division::all();
+        $categories = Categorie::All();
         $fichiers = Fichier::where('division_id', $division)->paginate(10);
-
-
-        return view('cadre.home', ['fichiers' => $fichiers]);
+        return view('cadre.home', ['fichiers' => $fichiers , 'categories'=>$categories , 'divisions'=>$divisions ]);
     }
 
 
