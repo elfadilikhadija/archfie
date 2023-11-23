@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Service;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -43,22 +45,38 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'role'=>['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+{
+    return Validator::make($data, [
+        'name' => ['required', 'string', 'max:255'],
+        'role' => ['required'],
+        'service_id' => ['required'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+    ]);
+}
+
+protected function register(Request $request)
+{
+    $data = $request->validate([
+        'name' => 'required|string',
+        'role' => 'required|string',
+        'service_id' => 'required|numeric',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
+
+    return User::create([
+        'name' => $data['name'],
+        'role' => $data['role'],
+        'service_id' => $data['service_id'],
+        'password' => Hash::make($data['password']),
+    ]);
+    if ($user) {
+        return redirect()->route('admine.acounts')->with('success', 'Registration successful!');
+    } else {
+        return redirect()->back()->with('error', 'Registration failed. Please try again.');
     }
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'role' => $data['role'],
-            'service_id' => $data['service_id'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+}
+
+
     /**
      * @param  array  $data
      * @return \App\Models\User

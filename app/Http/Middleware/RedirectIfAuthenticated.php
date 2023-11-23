@@ -2,27 +2,22 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
+use Closure;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\Request;
 class RedirectIfAuthenticated
 {
-    public function handle(Request $request, Closure $next, string ...$guards): Response
+    public function handle($request, Closure $next)
     {
-        $guards = empty($guards) ? [null] : $guards;
+        if (Auth::check()) {
+            $role = Auth::user()->role;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                if (!$request->is('admin/register') && !$request->is('admin/register/*')) {
-                    $role = Auth::user()->role;
-                    if ($role === 'admin' || $role === 'sg') {
-                        return redirect("/$role/home");
-                    }
-                
-                }
+            if ($role === 'admin' && $request->is('admin/register')) {
+                return $next($request);
             }
+
+            return redirect('/admin/home');
         }
 
         return $next($request);

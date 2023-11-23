@@ -29,7 +29,7 @@
                                 {{ $category->nom }}
                             </a>
                         </li>
-                    @endforeach 
+                    @endforeach
                 </ul>
             </div>
 

@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('admine.register') }}">
                         @csrf
 
                         <div class="mb-3 row">
@@ -33,11 +33,9 @@
                             <div class="col-md-6">
                                 <select id="service_id" class="form-select @error('service_id') is-invalid @enderror" name="service_id" required>
                                     <option value="" disabled selected>Select a Service</option>
-                                        <option value="1">service 1</option>
-                                        <option value="2">service 2</option>
-                                        <option value="3">service 3</option>
-
-
+                                    <option value="1">service 1</option>
+                                    <option value="2">service 2</option>
+                                    <option value="3">service 3</option>
                                 </select>
 
                                 @error('service_id')
