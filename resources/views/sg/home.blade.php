@@ -39,9 +39,14 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="divisionDropdown">
                     @foreach($divisions as $division)
-                        <li><a class="dropdown-item" href="{{ route('fichiers.filteredByDivision', $division->id) }}">{{ $division->nom }}</a></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admine.filteredByDivision', $division->id) }}">
+                                {{ $division->nom }}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
+
             </div>
         </div>
 

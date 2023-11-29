@@ -2,7 +2,7 @@
 @section('main')
     <div class="container">
         <h2 class="text-center">Créer un fichier</h2>
-        <form method="POST" class="border p-5" action="{{ route('fichiers.store') }}" enctype="multipart/form-data">
+        <form method="POST" class="border p-5" action="{{ route('admine.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">

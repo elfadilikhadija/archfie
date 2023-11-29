@@ -50,7 +50,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="categorie_id" class="form-label">service:</label>
+                <label for="service_id" class="form-label">Service:</label>
                 <select class="form-select" id="service_id" name="service_id" required>
                     <option value="" disabled selected>Select service</option>
                     @foreach ($services as $service)
@@ -58,6 +58,7 @@
                     @endforeach
                 </select>
             </div>
+
 
             <div class="mb-3">
                 <label for="fichier" class="form-label">Fichier (PDF):</label>

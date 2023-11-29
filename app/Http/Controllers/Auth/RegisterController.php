@@ -63,27 +63,33 @@ public function create()
     return view('your_view', compact('divisions'));
 }
 
-protected function register(Request $request)
-{
-    $data = $request->validate([
-        'name' => 'required|string',
-        'role' => 'required|string',
-        'division_id' => 'required|numeric',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
 
-    return User::create([
-        'name' => $data['name'],
-        'role' => $data['role'],
-        'division_id' => $data['division_id'],
-        'password' => Hash::make($data['password']),
-    ]);
-    if ($user) {
-        return redirect()->route('admine.acounts')->with('success', 'Registration successful!');
-    } else {
-        return redirect()->back()->with('error', 'Registration failed. Please try again.');
+public function register(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'role' => 'required|string',
+            'division_id' => 'required|numeric',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+
+        // Create the user
+        $user = User::create([
+            'name' => $request->name,
+            'role' => $request->role,
+            'division_id' => $request->division_id,
+            'password' => Hash::make($request->password),
+        ]);
+
+        if ($user) {
+            // Redirect to 'admine.acounts' upon successful user creation
+            return redirect()->route('admine.accounts')->with('success', 'User created successfully!');
+        } else {
+            // Redirect back with an error message if user creation fails
+            return redirect()->back()->with('error', 'User creation failed. Please try again.');
+        }
     }
-}
 
 
     /**
@@ -94,6 +100,15 @@ protected function register(Request $request)
      public function userlist()
      {
          $users = User::all();
+         $divisions = Division::all();
+
+         return view('admine.acounts', ['users' => $users,'divisions' => $divisions]);
+     }
+     public function searchByName(Request $request)
+     {
+         $searchTerm = $request->input('search');
+
+         $users = User::where('name', 'LIKE', "%$searchTerm%")->get();
 
          return view('admine.acounts', ['users' => $users]);
      }

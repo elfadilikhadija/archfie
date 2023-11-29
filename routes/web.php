@@ -53,6 +53,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/search', [AdminController::class, 'search'])->name('admine.search');
     Route::get('/category/{categoryId}', [AdminController::class, 'filteredByCategory'])->name('admine.filteredByCategory');
     Route::get('/division/{division}', [AdminController::class, 'filteredByDivision'])->name('admine.filteredByDivision');
+    Route::get('/recherche', [RegisterController::class, 'searchByName'])->name('admin.searchByName');
+
 });
 // Sg Routes
 Route::prefix('sg')->group(function () {

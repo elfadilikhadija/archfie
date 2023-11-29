@@ -29,17 +29,14 @@ class Fichier extends Model{
 
     public function service()
     {
-        return $this->belongsTo(Division::class, 'service_id');
+        return $this->belongsTo(Service::class, 'service_id');
     }
-    public function fichier()
-    {
-        return $this->belongsTo(Fichier::class, 'division_id');
-    }
+
+
 
     public function categorie()
     {
         return $this->belongsTo(Categorie::class, 'categorie_id');
     }
 
-    // Add other functions, scopes, or relationships as needed
 }

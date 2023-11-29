@@ -88,7 +88,7 @@ public function edit($id)
                 'fichier' =>  $fileName,
             ]);
 
-            return redirect()->route('admine.home')
+            return redirect()->route('admin.home')
                 ->with('success', 'File uploaded successfully.');
         }
      }
@@ -113,7 +113,7 @@ public function edit($id)
             })
             ->paginate(10);
 
-        return view('admine.home', compact('fichiers', 'services', 'categories', 'divisions'));
+        return view('admin.home', compact('fichiers', 'services', 'categories', 'divisions'));
     }
 
 

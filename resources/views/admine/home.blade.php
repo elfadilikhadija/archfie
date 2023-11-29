@@ -73,7 +73,7 @@
                     <td>{{ $fich->destinateurt }}</td>
                     <td>{{ $fich->destinataire }}</td>
                     <td>{{ $fich->date }}</td>
-                    <td>{{ $fich->service ? $fich->service->nom : 'N/A' }}</td>
+                    <td>{{ $fich->service->nom }}</td>
                     <td>{{ optional($fich->division)->nom }}</td>
                     <td>{{ $fich->categorie->nom }}</td>
                     <td>
