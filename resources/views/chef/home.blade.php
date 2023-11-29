@@ -1,36 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    @extends('layouts.app')
 
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
 
+@extends('chef.layout')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('main')
 
-                    welcome chef
+<div class="">
+   
 
-                </div>
-            </div>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Objet</th>
+                    <th>Numero</th>
+                    <th>Destinateur</th>
+                    <th>Destinataire</th>
+                    <th>Date</th>
+                    <th>Division</th>
+                    <th>service</th>
+                    <th>Categorie</th>
+                    <th>Fichier</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($fichiers as $fich)
+                <tr>
+                    <td>{{ $fich->id }}</td>
+                    <td>{{ $fich->objet }}</td>
+                    <td>{{ $fich->numero }}</td>
+                    <td>{{ $fich->destinateurt }}</td>
+                    <td>{{ $fich->destinataire }}</td>
+                    <td>{{ $fich->date }}</td>
+                    <td>{{ $fich->division->nom }}</td>
+                    <td>{{ $fich->service ? $fich->service->nom : 'N/A' }}</td>
+                    <td>{{ $fich->categorie->nom }}</td>
+                    <td>
+                        <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
+                    </td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+
+    <div class="d-flex justify-content-end">
+        {{ $fichiers->links() }}
+    </div>
+
+    <script>
+        function confirmDelete() {
+            return confirm('Voulez-vous supprimer ce fichier ?');
+        }
+    </script>
+
 </div>
 
-
-</body>
-</html>
+@endsection

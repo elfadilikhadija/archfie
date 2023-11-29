@@ -21,7 +21,7 @@
             margin-right:10%;
         }
         body{
-            font-family: 'Merriweather', serif;
+           font-family: 'Merriweather', serif;
             font-family: 'Poltawski Nowy', serif;
 
         }

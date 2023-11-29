@@ -58,6 +58,7 @@
                     <th>Destinataire</th>
                     <th>Date</th>
                     <th>Division</th>
+                    <th>service</th>
                     <th>Categorie</th>
                     <th>Fichier</th>
                     <th>Action</th>
@@ -73,6 +74,7 @@
                     <td>{{ $fich->destinataire }}</td>
                     <td>{{ $fich->date }}</td>
                     <td>{{ $fich->division->nom }}</td>
+                    <td>{{ $fich->service->nom }}</td>
                     <td>{{ $fich->categorie->nom }}</td>
                     <td>
                         <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>

@@ -13,12 +13,16 @@ class Division extends Model
         'nom',
     ];
 
-    public function mantoj()
+    public function Service()
     {
         return $this->hasMany(Service::class, 'division_id');
     }
     public function Fichier()
     {
         return $this->hasMany(Fichier::class, 'division_id');
+    }
+    public function User()
+    {
+        return $this->hasMany(User::class, 'division_id');
     }
 }

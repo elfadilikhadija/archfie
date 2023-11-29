@@ -42,24 +42,29 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', [AdminController::class, 'listAcc'])->name('admine.accounts');
     Route::get('/dossiers', [AdminController::class, 'dossiers'])->name('admine.dossiers');
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
+    Route::delete('/archife/{id}', [AdminController::class, 'desarchifier'])->name('admine.desarchife');
     Route::get('/archife', [AdminController::class, 'archife'])->name('admine.archife');
     Route::get('/create', [AdminController::class, 'create'])->name('admine.create');
     Route::post('/create', [AdminController::class, 'store'])->name('admine.store');
     Route::delete('/{id}', [AdminController::class, 'destroy'])->name('admine.destroy');
     Route::get('/{id}/edit', [AdminController::class, 'edit'])->name('admine.edit');
     Route::patch('/{id}', [AdminController::class, 'update'])->name('admine.update');
-    Route::post('/cadre/search', [AdminController::class, 'search'])->name('admine.search');
+    Route::get('/filteredByService/{serviceId}', [AdminController::class, 'filteredByService'])->name('admin.filteredByService');
+    Route::post('/search', [AdminController::class, 'search'])->name('admine.search');
     Route::get('/category/{categoryId}', [AdminController::class, 'filteredByCategory'])->name('admine.filteredByCategory');
     Route::get('/division/{division}', [AdminController::class, 'filteredByDivision'])->name('admine.filteredByDivision');
 });
 // Sg Routes
-Route::prefix('sg')->middleware('checkSgRole')->group(function () {
+Route::prefix('sg')->group(function () {
     Route::get('/home', [SgController::class, 'index'])->name('sg.home');
 
 });
 
 // Chef Routes
-Route::prefix('chef')->middleware('checkChefRole')->group(function () {
+Route::prefix('chef')->group(function () {
     Route::get('/home', [ChefController::class, 'index'])->name('chef.home');
+    Route::post('/search', [ChefController::class, 'search'])->name('chef.search');
+    Route::get('/category/{categoryId}', [AdminController::class, 'filteredByCategory'])->name('chef.filteredByCategory');
+
 });
 

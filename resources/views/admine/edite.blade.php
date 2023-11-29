@@ -1,4 +1,4 @@
-@extends('cadre.layout')
+@extends('admine.layout')
 @section('main')
     <div class="container">
         <h2 class="text-center">Modifier le fichier</h2>
@@ -36,14 +36,6 @@
                 <select class="form-select" id="division_id" name="division_id" required>
                     @foreach ($divisions as $division)
                         <option value="{{ $division->id }}" @if($division->id === $fichier->division_id) selected @endif>{{ $division->nom }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="service_id" class="form-label">service:</label>
-                <select class="form-select" id="service_id" name="service_id" required>
-                    @foreach ($services as $service)
-                        <option value="{{ $service->id }}" @if($service->id === $fichier->service_id) selected @endif>{{ $division->nom }}</option>
                     @endforeach
                 </select>
             </div>

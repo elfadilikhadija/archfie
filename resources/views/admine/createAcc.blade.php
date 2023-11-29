@@ -28,17 +28,18 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="service_id" class="col-md-4 col-form-label text-md-end">{{ __('Service') }}</label>
+                            <label for="division_id" class="col-md-4 col-form-label text-md-end">{{ __('division') }}</label>
 
                             <div class="col-md-6">
-                                <select id="service_id" class="form-select @error('service_id') is-invalid @enderror" name="service_id" required>
-                                    <option value="" disabled selected>Select a Service</option>
-                                    <option value="1">service 1</option>
-                                    <option value="2">service 2</option>
-                                    <option value="3">service 3</option>
+                                <select id="division_id" class="form-select @error('division_id') is-invalid @enderror" name="division_id" required>
+                                    <option value="" disabled selected>Select a Division</option>
+                                    @foreach($divisions as $division)
+                                        <option value="{{ $division->id }}">{{ $division->nom }}</option>
+                                    @endforeach
                                 </select>
 
-                                @error('service_id')
+
+                                @error('division_id')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -82,7 +83,7 @@
                         </div>
                         {{-- <div class="col-md-6">
                             <select id="division_id" name="division_id" class="form-control">
-                                <option value="" disabled selected>Select Service</option>
+                                <option value="" disabled selected>Select division</option>
                                 @foreach ($services as $service)
                                     <option value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach

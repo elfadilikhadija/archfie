@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Service;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -11,6 +11,9 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use App\Models\Division;
+
 class RegisterController extends Controller
 {
 
@@ -30,8 +33,8 @@ class RegisterController extends Controller
      */
         public function index()
     {
-        $services = Service::all();
-        return view('admine.createAcc', compact('services'));
+        $divisions = Division::all();
+        return view('admine.createAcc', compact('divisions'));
     }
 
     public function __construct()
@@ -49,9 +52,15 @@ class RegisterController extends Controller
     return Validator::make($data, [
         'name' => ['required', 'string', 'max:255'],
         'role' => ['required'],
-        'service_id' => ['required'],
+        'division_id' => ['required'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
     ]);
+}
+
+public function create()
+{
+    $divisions = Division::all(); // Fetch all divisions from the database
+    return view('your_view', compact('divisions'));
 }
 
 protected function register(Request $request)
@@ -59,14 +68,14 @@ protected function register(Request $request)
     $data = $request->validate([
         'name' => 'required|string',
         'role' => 'required|string',
-        'service_id' => 'required|numeric',
+        'division_id' => 'required|numeric',
         'password' => 'required|string|min:8|confirmed',
     ]);
 
     return User::create([
         'name' => $data['name'],
         'role' => $data['role'],
-        'service_id' => $data['service_id'],
+        'division_id' => $data['division_id'],
         'password' => Hash::make($data['password']),
     ]);
     if ($user) {

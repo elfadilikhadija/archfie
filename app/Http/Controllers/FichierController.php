@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use App\Models\Service;
 
 use App\Models\Division;
 use App\Models\Fichier;
@@ -18,19 +19,21 @@ class FichierController extends Controller
     {
         $divisions = Division::all();
         $categories = Categorie::all();
+        $services = Service::all();
 
         $fichiers = Fichier::where('archiver', false)->paginate(10);
 
-        return view('cadre.home', compact('fichiers','divisions', 'categories'));
+        return view('cadre.home', compact('fichiers','divisions', 'categories' , 'services'));
     }
 
     public function create()
     {
         $divisions = Division::all();
         $categories = Categorie::all();
+        $services = Service::all();
 
 
-         return view('cadre.create', ['categories' => $categories , 'divisions' => $divisions]);
+         return view('cadre.create', ['services' => $services ,'categories' => $categories , 'divisions' => $divisions]);
     }
 
 
@@ -42,6 +45,7 @@ class FichierController extends Controller
             'destinateurt' => 'required',
             'destinataire' => 'required',
             'date' => 'required',
+            'service_id' => 'required',
             'division_id' => 'required',
             'categorie_id' => 'required',
             'fichier' => 'required|mimes:pdf|max:2048', // Validate
@@ -58,6 +62,7 @@ class FichierController extends Controller
                 'destinateurt' => $request->destinateurt,
                 'destinataire' => $request->destinataire,
                 'date' => $request->date,
+                'service_id' => $request->service_id,
                 'division_id' => $request->division_id,
                 'categorie_id' => $request->categorie_id,
                 'fichier' =>  $fileName,

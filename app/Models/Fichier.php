@@ -15,16 +15,25 @@ class Fichier extends Model{
     'date',
     'division_id',
     'categorie_id',
+    'service_id',
     'fichier',
     'archiver'
 ];
 
 
     // Relationships
-
     public function division()
+{
+    return $this->belongsTo(Division::class, 'division_id');
+}
+
+    public function service()
     {
-        return $this->belongsTo(Division::class, 'division_id');
+        return $this->belongsTo(Division::class, 'service_id');
+    }
+    public function fichier()
+    {
+        return $this->belongsTo(Fichier::class, 'division_id');
     }
 
     public function categorie()

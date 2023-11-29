@@ -57,7 +57,6 @@
                     <th>Destinateur</th>
                     <th>Destinataire</th>
                     <th>Date</th>
-                    <th>Service</th>
                     <th>Division</th>
                     <th>Categorie</th>
                     <th>Fichier</th>
@@ -73,19 +72,20 @@
                     <td>{{ $fich->destinateurt }}</td>
                     <td>{{ $fich->destinataire }}</td>
                     <td>{{ $fich->date }}</td>
-                    <td>{{ $fich->service ? $fich->service->nom : 'N/A' }}</td>
-                    <td>{{ optional($fich->division)->nom }}</td>
+                    <td>{{ $fich->division->nom }}</td>
+                    <td>{{ $fich->service->nom }}</td>
                     <td>{{ $fich->categorie->nom }}</td>
                     <td>
                         <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
                     </td>
                     <td>
                         <a href="{{ route('admine.edit', ['id' => $fich->id]) }}" class="btn btn-sm btn-primary">Update</a>
-                        <form action="{{ route('admine.destroy', ['id' => $fich->id]) }}" method="POST" class="delete-form">
+                        <form action="{{ route('admine.desarchife', ['id' => $fich->id]) }}" method="POST" class="delete-form">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
+                            <button type="submit" class="btn btn-secondary" onclick="return confirm('Are you sure you want to unarchive this file?')">récupererr</button>
                         </form>
+
                     </td>
                 </tr>
                 @endforeach
@@ -97,11 +97,7 @@
         {{ $fichiers->links() }}
     </div>
 
-    <script>
-        function confirmDelete() {
-            return confirm('Voulez-vous supprimer ce fichier ?');
-        }
-    </script>
+
 
 </div>
 

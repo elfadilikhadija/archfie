@@ -17,9 +17,13 @@ class Service extends Model
     {
         return $this->hasMany(User::class, 'service_id');
     }
+    public function fichier()
+    {
+        return $this->hasMany(Fichier::class, 'service_id');
+    }
         public function division()
     {
         return $this->belongsTo(division::class, 'division_id');
     }
-    
+
 }
