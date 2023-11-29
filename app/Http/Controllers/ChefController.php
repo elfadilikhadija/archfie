@@ -61,6 +61,26 @@ class ChefController extends Controller
         return view('chef.home', compact('fichiers', 'categories', 'divisions'));
     }
 
+    public function filteredByCategory($categoryId)
+{
+    $user = Auth::user();
+    $userDivisionId = $user->division_id;
+    $categories = Categorie::all();
+    $category = Categorie::findOrFail($categoryId);
+
+    // Fetch fichiers belonging to the authenticated user's division and the selected category
+    $fichiers = Fichier::where('archiver', false)
+        ->where('categorie_id', $categoryId)
+        ->whereHas('division', function ($query) use ($userDivisionId) {
+            $query->where('id', $userDivisionId);
+        })
+        ->paginate(10);
+
+    return view('chef.home', compact('fichiers', 'categories'));
+}
+
+
+
 
 
 
