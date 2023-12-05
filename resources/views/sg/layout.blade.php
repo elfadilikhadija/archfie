@@ -46,17 +46,9 @@
                     <ul class="navbar-nav me-auto">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
+                            <a href="{{ route('sg.home') }}" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admine.register') }}" class="nav-link">Create Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admine.accounts') }}" class="nav-link">Manage Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admine.dossiers') }}" class="nav-link">Dossier</a>
-                        </li>
+
                     </ul>
 
 

@@ -20,7 +20,7 @@ class ChefController extends Controller
 
      public function index()
      {
-         if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role === 'chef') {
              $user = Auth::user(); // Retrieve authenticated user
              $userDivisionId = $user->division_id; // Get authenticated user's division ID
 
@@ -44,6 +44,7 @@ class ChefController extends Controller
 
     public function search(Request $request)
     {
+        if (Auth::check() && Auth::user()->role === 'chef') {
         $categories = Categorie::all();
         $divisions = Division::all();
         $query = $request->input('query');
@@ -59,10 +60,14 @@ class ChefController extends Controller
             ->paginate(10);
 
         return view('chef.home', compact('fichiers', 'categories', 'divisions'));
+    }else{
+        return redirect()->back();
+    }
     }
 
     public function filteredByCategory($categoryId)
 {
+    if (Auth::check() && Auth::user()->role === 'chef') {
     $user = Auth::user();
     $userDivisionId = $user->division_id;
     $categories = Categorie::all();
@@ -77,6 +82,9 @@ class ChefController extends Controller
         ->paginate(10);
 
     return view('chef.home', compact('fichiers', 'categories'));
+}else{
+    return redirect()->back();
+}
 }
 
 

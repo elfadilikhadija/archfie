@@ -66,9 +66,6 @@
                         <li class="nav-item">
                             <a href="{{ route('admine.archife') }}" class="nav-link">archife</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admine.dossiers') }}" class="nav-link">Dossier</a>
-                        </li>
                     </ul>
 
 

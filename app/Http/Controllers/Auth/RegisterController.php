@@ -83,10 +83,8 @@ public function register(Request $request)
         ]);
 
         if ($user) {
-            // Redirect to 'admine.acounts' upon successful user creation
             return redirect()->route('admine.accounts')->with('success', 'User created successfully!');
         } else {
-            // Redirect back with an error message if user creation fails
             return redirect()->back()->with('error', 'User creation failed. Please try again.');
         }
     }
@@ -101,16 +99,8 @@ public function register(Request $request)
      {
          $users = User::all();
          $divisions = Division::all();
-
          return view('admine.acounts', ['users' => $users,'divisions' => $divisions]);
      }
-     public function searchByName(Request $request)
-     {
-         $searchTerm = $request->input('search');
 
-         $users = User::where('name', 'LIKE', "%$searchTerm%")->get();
-
-         return view('admine.acounts', ['users' => $users]);
-     }
 
 }

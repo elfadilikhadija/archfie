@@ -5,7 +5,7 @@
         <h1 class="text-center mb-5">list d'utilisateur</h1>
 
 
-        <form method="GET" action="{{ route('admin.searchByName') }}">
+        <form method="GET" action="{{ route('admine.searchByName') }}">
             @csrf
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="search" placeholder="rechercher par nom" aria-label="Search" aria-describedby="basic-addon2">
@@ -37,8 +37,9 @@
 
                         <td>{{ $user->role }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                            <a class="btn btn-primary" href="{{ route('admine.modifye', ['id' => $user->id]) }}" >modifier </a>
+                            <a onclick="alert('vous vouler suprimer ce utilisateur')" href="{{ route('admine.deleteUser', ['id' => $user->id]) }}" class="btn  btn-danger">suprimer</a>
+
                         </td>
                     </tr>
                 @endforeach

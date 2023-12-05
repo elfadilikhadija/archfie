@@ -6,6 +6,8 @@ use App\Http\Controllers\CadreController;
 use App\Http\Controllers\SgController;
 use App\Http\Controllers\ChefController;
 use App\Http\Controllers\FichierController;
+use App\Http\Middleware\CheckAdminRole;
+
 // Authentication Routes
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/', [LoginController::class, 'login']);
@@ -39,22 +41,23 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/register', [RegisterController::class, 'index'])->name('admine.register');
     Route::post('/register', [RegisterController::class, 'register'])->name('admine.register');
+    Route::get('/rechecher', [AdminController::class, 'searchByName'])->name('admine.searchByName');
+    Route::get('/modify/{id}', [AdminController::class, 'showModifyForm'])->name('admine.modify');
+    Route::put('/modify/{id}', [AdminController::class, 'modify'])->name('admine.modifye');
+    Route::get('/daleteUser/{id}', [AdminController::class, 'deleteUser'])->name('admine.deleteUser');
+
     Route::get('/users', [AdminController::class, 'listAcc'])->name('admine.accounts');
     Route::get('/dossiers', [AdminController::class, 'dossiers'])->name('admine.dossiers');
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
-    Route::delete('/archife/{id}', [AdminController::class, 'desarchifier'])->name('admine.desarchife');
     Route::get('/archife', [AdminController::class, 'archife'])->name('admine.archife');
     Route::get('/create', [AdminController::class, 'create'])->name('admine.create');
     Route::post('/create', [AdminController::class, 'store'])->name('admine.store');
     Route::delete('/{id}', [AdminController::class, 'destroy'])->name('admine.destroy');
     Route::get('/{id}/edit', [AdminController::class, 'edit'])->name('admine.edit');
     Route::patch('/{id}', [AdminController::class, 'update'])->name('admine.update');
-    Route::get('/filteredByService/{serviceId}', [AdminController::class, 'filteredByService'])->name('admin.filteredByService');
-    Route::post('/search', [AdminController::class, 'search'])->name('admine.search');
+    Route::patch('/search', [AdminController::class, 'search'])->name('admine.search');
     Route::get('/category/{categoryId}', [AdminController::class, 'filteredByCategory'])->name('admine.filteredByCategory');
     Route::get('/division/{division}', [AdminController::class, 'filteredByDivision'])->name('admine.filteredByDivision');
-    Route::get('/recherche', [RegisterController::class, 'searchByName'])->name('admin.searchByName');
-
 });
 // Sg Routes
 Route::prefix('sg')->group(function () {
@@ -65,8 +68,7 @@ Route::prefix('sg')->group(function () {
 // Chef Routes
 Route::prefix('chef')->group(function () {
     Route::get('/home', [ChefController::class, 'index'])->name('chef.home');
-    Route::post('/search', [ChefController::class, 'search'])->name('chef.search');
     Route::get('/category/{categoryId}', [ChefController::class, 'filteredByCategory'])->name('chef.filteredByCategory');
-
+    Route::post('/search', [ChefController::class, 'search'])->name('chef.search');
 });
 
