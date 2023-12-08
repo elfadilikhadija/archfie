@@ -107,6 +107,7 @@ class FichierController extends Controller
         if (Auth::check() && Auth::user()->role === 'cadre') {
             $categories = Categorie::all();
             $divisions = Division::all();
+            $services = Service::all();
             $query = $request->input('query');
 
             $fichiers = Fichier::where('archiver', false)
@@ -119,7 +120,7 @@ class FichierController extends Controller
                 })
                 ->paginate(10);
 
-            return view('cadre.home', compact('fichiers', 'categories', 'divisions'));
+            return view('cadre.home', compact('fichiers', 'categories', 'divisions' ,'services'));
         }else{
             return redirect()->back();
 

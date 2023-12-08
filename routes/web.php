@@ -74,3 +74,7 @@ Route::prefix('chef')->group(function () {
     Route::post('/search', [ChefController::class, 'search'])->name('chef.search');
 });
 
+// Fallback Route
+Route::fallback(function () {
+    return view('page.error');
+});

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Division;
 use App\Models\Fichier;
@@ -16,7 +17,7 @@ class AdminController extends Controller
         if (Auth::check() && Auth::user()->role === 'admin') {
             $divisions = Division::all();
             $categories = Categorie::all();
-            $fichiers = Fichier::where('archiver', false)->paginate(10);
+            $fichiers = Fichier::where('archiver', false)->paginate(5);
             return view('admine.home', compact('fichiers','divisions', 'categories'));
         }else{
             return redirect()->back();

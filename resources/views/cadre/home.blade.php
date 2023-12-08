@@ -205,38 +205,40 @@
 
 {{-- end modal --}}
         {{-- code of pagination --}}
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-end">
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-end">
 
-                {{-- Previous Page Link --}}
-                @if ($fichiers->onFirstPage())
-                    <li class="page-item disabled">
-                        <span class="page-link" aria-hidden="true">Previous</span>
-                    </li>
-                @else
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $fichiers->previousPageUrl() }}" aria-label="Previous">Previous</a>
-                    </li>
-                @endif
-                {{-- Pagination Elements --}}
-                @foreach ($fichiers as $page => $url)
-                    <li class="page-item{{ $page == $fichiers->currentPage() ? ' active' : '' }}">
-                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                    </li>
-                @endforeach
-                {{-- Next Page Link --}}
-                @if ($fichiers->hasMorePages())
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $fichiers->nextPageUrl() }}" aria-label="Next">Next</a>
-                    </li>
-                @else
-                    <li class="page-item disabled">
-                        <span class="page-link" aria-hidden="true">Next</span>
-                    </li>
-                @endif
-            </ul>
-        </nav>
-        {{-- end of pagination --}}
+        {{-- Previous Page Link --}}
+        @if ($fichiers->onFirstPage())
+            <li class="page-item disabled">
+                <span class="page-link" aria-hidden="true">Previous</span>
+            </li>
+        @else
+            <li class="page-item">
+                <a class="page-link" href="{{ $fichiers->previousPageUrl() }}" aria-label="Previous">Previous</a>
+            </li>
+        @endif
+
+        {{-- Pagination Elements --}}
+        @for ($i = 1; $i <= $fichiers->lastPage(); $i++)
+            <li class="page-item{{ $i == $fichiers->currentPage() ? ' active' : '' }}">
+                <a class="page-link" href="{{ $fichiers->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+
+        {{-- Next Page Link --}}
+        @if ($fichiers->hasMorePages())
+            <li class="page-item">
+                <a class="page-link" href="{{ $fichiers->nextPageUrl() }}" aria-label="Next">Next</a>
+            </li>
+        @else
+            <li class="page-item disabled">
+                <span class="page-link" aria-hidden="true">Next</span>
+            </li>
+        @endif
+    </ul>
+</nav>
+{{-- end of pagination --}}
 
 <script>
   <script>
