@@ -431,7 +431,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="step2">
                                     <h4 class="text-center">Step 2</h4>
@@ -505,10 +505,10 @@
                                         </div>
                                             <div class="col-md-6">
                                             <div class="form-group">
+                                              
                                                 <label>Fichier (PDF):</label>
                                                 <div class="custom-file">
-                                                    <label class="custom-file-label" for="fichier">Select file</label>
-                                                        <input type="file" class="custom-file-input" class="form-control" id="fichier" name="fichier" accept=".pdf" required>
+                                                   <input type="file" name="" id="" class="form-control" id="fichier" name="fichier" accept=".pdf" required>
 
                                                 </div>
                                             </div>

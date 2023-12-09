@@ -30,7 +30,7 @@ svg {
   margin-top: 40px;
 }
 .buttons-con .action-link-wrap a {
-  background: #68c950;
+  background: #f49848;
   padding: 8px 25px;
   border-radius: 4px;
   color: #FFF;

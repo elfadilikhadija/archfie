@@ -71,6 +71,7 @@ Route::prefix('sg')->group(function () {
 Route::prefix('chef')->group(function () {
     Route::get('/home', [ChefController::class, 'index'])->name('chef.home');
     Route::get('/category/{categoryId}', [ChefController::class, 'filteredByCategory'])->name('chef.filteredByCategory');
+    Route::get('/division/{division}', [ChefController::class,'filteredByDivision' ])->name('chef.filteredByDivision');
     Route::post('/search', [ChefController::class, 'search'])->name('chef.search');
 });
 

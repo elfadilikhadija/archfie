@@ -43,11 +43,11 @@
                                 <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
                             </svg>Filtrer par Division
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                            @foreach($categories as $category)
+                        <ul class="dropdown-menu" aria-labelledby="divisionDropdown">
+                            @foreach($divisions as $division)
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('chef.filteredByCategory', $category->id) }}">
-                                        {{ $category->nom }}
+                                    <a class="dropdown-item" href="{{ route('chef.filteredByDivision', $division->id) }}">
+                                        {{ $division->nom }}
                                     </a>
                                 </li>
                             @endforeach
@@ -86,7 +86,7 @@
                         <th>Division</th>
                         <th>Categorie</th>
                         <th>Fichier</th>
-                     
+
                     </tr>
                 </thead>
                 <tbody>

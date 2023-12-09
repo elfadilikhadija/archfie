@@ -251,9 +251,7 @@
             border-radius: 0 0.25rem 0.25rem 0;
         }
 
-        .footer-link {
-            margin-top: 30px;
-        }
+
 
         .all-info-container {}
 
@@ -506,8 +504,7 @@
                                             <div class="form-group">
                                                 <label>Fichier (PDF):</label>
                                                 <div class="custom-file">
-                                                    <label class="custom-file-label" for="fichier">Select file</label>
-                                                        <input type="file" class="custom-file-input" class="form-control" id="fichier" name="fichier" accept=".pdf" required>
+                                                   <input type="file" name="" id="" class="form-control" id="fichier" name="fichier" accept=".pdf" required>
 
                                                 </div>
                                             </div>
@@ -520,8 +517,6 @@
 
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="default-btn prev-step">Back</button></li>
-
-
 
                                         <li> <button type="submit" class="btn btn-primary">Create Fichier</button></li>
                                     </ul>

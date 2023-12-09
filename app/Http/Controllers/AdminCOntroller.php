@@ -247,9 +247,6 @@ class AdminController extends Controller
                 return redirect()->back();
             }
         }
-
-
-
         public function filteredByDivision(Request $request, $division)
         {
             if (Auth::check() && Auth::user()->role === 'admin') {

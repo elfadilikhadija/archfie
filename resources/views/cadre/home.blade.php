@@ -4,7 +4,7 @@
         <div class="row mb-3">
             <div class="col-md-3">
                 <form method="POST" action="{{ route('fichiers.search') }}" class="input-group">
-                    @csrf
+                                        @csrf
                     <input type="text" class="form-control " name="query" placeholder="Rechercher..."
                         aria-label="Rechercher">
                     <button class="btn btn-outline-secondary" type="submit">
@@ -25,12 +25,11 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                             @foreach ($categories as $category)
-                                <li>
-                                    <a class="dropdown-item"
-                                    href="{{ route('fichiers.filteredByCategory', $category->id) }}">
-                                        {{ $category->nom }}
-                                    </a>
-                                </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('fichiers.filteredByCategory', $category->id) }}">
+                                    {{ $category->nom }}
+                                </a>
+                            </li>
                             @endforeach
                         </ul>
                     </div>
@@ -45,8 +44,8 @@
                             </svg>Filtrer par Division
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="divisionDropdown">
-                            @foreach ($divisions as $division)
-                            <li><a class="dropdown-item" href="{{ route('fichiers.filteredByDivision', $division->id) }}">{{ $division->nom }}</a></li>
+                            @foreach($divisions as $division)
+                                <li><a class="dropdown-item" href="{{ route('fichiers.filteredByDivision', $division->id) }}">{{ $division->nom }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -95,9 +94,8 @@
                     <td>{{ $fich->destinateurt }}</td>
                     <td>{{ $fich->destinataire }}</td>
                     <td>{{ $fich->date }}</td>
-                    <td>{{ $fich->service->nom }}</td>
                     <td>{{ $fich->division->nom }}</td>
-
+                    <td>{{ $fich->service->nom }}</td>
                     <td>{{ $fich->categorie->nom }}</td>
                     <td>
                         <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
