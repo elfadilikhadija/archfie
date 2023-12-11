@@ -1,7 +1,7 @@
 @extends('admine.layout')
 @section('content')
-    <div class="container mt-4">
-        <h1 class="text-center mb-5">list d'utilisateur</h1>
+    <div class="container">
+       <div class="row mb-3"> <h3 class="text-center mb-5">list d'utilisateur</h3>
         <form method="GET" action="{{ route('admine.searchByName') }}">
             @csrf
             <div class="input-group mb-3 w-25">
@@ -130,7 +130,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div></div>
                         </div>
 
                         {{-- end modal --}}

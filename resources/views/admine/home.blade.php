@@ -125,50 +125,49 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Modifier le fichier</h5>
+                <h5 class="modal-title"  id="updateModalLabel"><span>Modifier le fichier</span></h5>
                 <button type="button" class="close bg-warning border-warning" data-dismiss="modal" aria-label="Close">
                     <span  aria-hidden="true">&times;</span>
                 </button>
             </div>
             <!-- Modal Body (Your Form Goes Here) -->
            <div class="modal-body">
-            @foreach($fichiers as $fichier)
-    <form method="POST" class="border p-5" action="{{ route('fichiers.update', ['id' => $fichier->id]) }}" enctype="multipart/form-data">
+    <form method="POST" class="border p-5" action="{{ route('fichiers.update', ['id' => $fich->id]) }}" enctype="multipart/form-data">
         @csrf
         @method('PATCH') <!-- Use PATCH method for updating -->
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="objet" class="form-label">Objet:</label>
-                    <input type="text" class="form-control" id="objet" name="objet" value="{{ $fichier->objet }}" required>
+                    <input type="text" class="form-control" id="objet" name="objet" value="{{ $fich->objet }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="numero" class="form-label">Numero:</label>
-                    <input type="text" class="form-control" id="numero" name="numero" value="{{ $fichier->numero }}" required>
+                    <input type="text" class="form-control" id="numero" name="numero" value="{{ $fich->numero }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="destinateurt" class="form-label">Destinateur:</label>
-                    <input type="text" class="form-control" id="destinateurt" name="destinateurt" value="{{ $fichier->destinateurt }}" required>
+                    <input type="text" class="form-control" id="destinateurt" name="destinateurt" value="{{ $fich->destinateurt }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="destinataire" class="form-label">Destinataire:</label>
-                    <input type="text" class="form-control" id="destinataire" name="destinataire" value="{{ $fichier->destinataire }}" required>
+                    <input type="text" class="form-control" id="destinataire" name="destinataire" value="{{ $fich->destinataire }}" required>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="date" class="form-label">Date:</label>
-                    <input type="date" class="form-control" id="date" name="date" value="{{ $fichier->date }}" required>
+                    <input type="date" class="form-control" id="date" name="date" value="{{ $fich->date }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="division_id" class="form-label">Division:</label>
                     <select class="form-select" id="division_id" name="division_id" required>
                         @foreach ($divisions as $division)
-                            <option value="{{ $division->id }}" @if($division->id === $fichier->division_id) selected @endif>{{ $division->nom }}</option>
+                            <option value="{{ $division->id }}" @if($division->id === $fich->division_id) selected @endif>{{ $division->nom }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -177,7 +176,7 @@
                     <label for="categorie_id" class="form-label">Categorie:</label>
                     <select class="form-select" id="categorie_id" name="categorie_id" required>
                         @foreach ($categories as $categorie)
-                            <option value="{{ $categorie->id }}" @if($categorie->id === $fichier->categorie_id) selected @endif>{{ $categorie->nom }}</option>
+                            <option value="{{ $categorie->id }}" @if($categorie->id === $fich->categorie_id) selected @endif>{{ $categorie->nom }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -193,7 +192,7 @@
             </div>
         </div>
     </form>
-    @endforeach
+
 </div>
         </div>
     </div>

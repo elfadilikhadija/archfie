@@ -410,10 +410,8 @@
                             </ul>
                         </div>
 
-<form method="POST" role="form" class="login-box" action="{{ route('admine.store') }}"  enctype="multipart/form-data">
+<form method="POST"  action="{{ route('admine.store') }}"  enctype="multipart/form-data"   role="form" class="login-box">
                             @csrf
-
-
                             <div class="tab-content" id="main_form">
                                 <div class="tab-pane active" role="tabpanel" id="step1">
                                     <h4 class="text-center">Step 1</h4>
@@ -439,15 +437,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Destinateur:</label>
-                                                <input class="form-control" type="text" id="destinateurt"
-                                                    name="destinateurt" required>
+                                                <input class="form-control" type="text" id="destinateurt"name="destinateurt" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Destinataire:</label>
-                                                <input class="form-control" type="text" id="destinataire"
-                                                    name="destinataire" required>
+                                                <input class="form-control" type="text" id="destinataire" name="destinataire" required>
                                             </div>
                                         </div>
                                     </div>
@@ -505,10 +501,10 @@
                                         </div>
                                             <div class="col-md-6">
                                             <div class="form-group">
-                                              
+
                                                 <label>Fichier (PDF):</label>
                                                 <div class="custom-file">
-                                                   <input type="file" name="" id="" class="form-control" id="fichier" name="fichier" accept=".pdf" required>
+                                                   <input type="file"  class="form-control" id="fichier" name="fichier" accept=".pdf" required>
 
                                                 </div>
                                             </div>
@@ -521,10 +517,7 @@
 
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="default-btn prev-step">Back</button></li>
-
-
-
-                                        <li> <button type="submit" class="btn btn-primary">Create Fichier</button></li>
+                                        <li> <button type="submit"class="btn btn-primary">Creat</button></li>
                                     </ul>
                                 </form>
                                 </div>
@@ -587,5 +580,18 @@
             $(this).addClass("active");
         });
     </script>
+
+    
+     @if (session()->has('success'))
+     <script>
+         Swal.fire({
+             position: "top-end",
+             icon: 'success',
+             title: "{{ session()->get('success') }}", // Correction de 'sucess' à 'success'
+             showConfirmButton: false,
+             timer: 2500
+         });
+     </script>
+ @endif
 @endsection
 @endsection
