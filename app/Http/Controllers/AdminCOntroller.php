@@ -114,7 +114,9 @@ class AdminController extends Controller
                 ]);
 
                 return redirect()->route('admin.home')
-                    ->with('success', 'File uploaded successfully.');
+                    ->with([
+                        'success' => 'File uploaded successfully'
+                    ]);;
             }
         }else{
             return redirect()->back();

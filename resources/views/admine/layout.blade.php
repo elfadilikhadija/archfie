@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('asset/index.css') }}" />
-    <title>g</title>
+    <title>ARF</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <div   id="sidebarElementName"  class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase "   >
-                <img src="{{ asset('images/R.png') }}" alt="">
+                <a href="{{ URL('/presentation') }}"><img src="{{ asset('images/R.png') }}" alt=""></a>
             </div>
             <div class="list-group list-group-flush my-3">
 

@@ -81,11 +81,10 @@
                         <th>Destinateur</th>
                         <th>Destinataire</th>
                         <th>Date</th>
-                        <th>Service</th>
                         <th>Division</th>
                         <th>Categorie</th>
                         <th>Fichier</th>
-                        <th>Action</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -100,16 +99,18 @@
                         <td>{{ $fich->division->nom }}</td>
                         <td>{{ $fich->categorie->nom }}</td>
                         <td>
-                            <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
+                            <button  class="btn btn-dark text-bg-light btn-sm"> <a  href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank"></a> View</button>
                         </td>
-                        <td>
-                            <a href="{{ route('fichiers.edit', ['id' => $fich->id]) }}" class="btn btn-sm btn-primary">Update</a>
+                        {{-- <td>
+                            <div class="btn-group" role="group">
+                            <a href="{{ route('fichiers.edit', ['id' => $fich->id]) }}" class="btn btn-sm btn-warning mx-2">  <i class="fa fa-edit " style="color:yellow"></i></a>
                             <form action="{{ route('fichiers.destroy', ['id' => $fich->id]) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirmDelete()"><i class="fas fa-trash"></i></button>
                             </form>
-                        </td>
+                        </div>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

@@ -11,14 +11,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 // Authentication Routes
+
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('web');
 // Route::get('/register', [RegisterController::class, 'index']);
 // Route::post('/register', [RegisterController::class, 'create'])->name('register');
  Auth::routes();
-
-
+ Route::get('/presentation', function () {
+    return view('page.presentation');});
 
 
 
@@ -47,7 +48,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/modify/{id}', [AdminController::class, 'showModifyForm'])->name('admine.modify');
     Route::put('/modify/{id}', [AdminController::class, 'modify'])->name('admine.modifye');
     Route::get('/daleteUser/{id}', [AdminController::class, 'deleteUser'])->name('admine.deleteUser');
-
     Route::get('/users', [AdminController::class, 'listAcc'])->name('admine.accounts');
     Route::get('/dossiers', [AdminController::class, 'dossiers'])->name('admine.dossiers');
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home');

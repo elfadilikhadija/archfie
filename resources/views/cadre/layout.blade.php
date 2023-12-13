@@ -19,7 +19,7 @@
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <div   id="sidebarElementName"  class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase "   >
-                <img src="{{ asset('images/R.png') }}" alt="">
+                <a href="{{ URL('/presentation') }}"><img src="{{ asset('images/R.png') }}" alt=""></a>
             </div>
             <div class="list-group list-group-flush my-3">
                 <a href="{{ route('cadre.home') }}"  class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i

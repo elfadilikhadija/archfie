@@ -1,15 +1,16 @@
 @extends('admine.layout')
 @section('content')
     <div class="container">
-       <div class="row mb-3"> <h3 class="text-center mb-5">list d'utilisateur</h3>
+       <div class="row mb-3"> <h3 class="text-center mb-3">list d'utilisateur</h3>
         <form method="GET" action="{{ route('admine.searchByName') }}">
             @csrf
-            <div class="input-group mb-3 w-25">
+            <div class="input-group w-25 ">
                 <input type="text" class="form-control" name="search" placeholder="rechercher par nom" aria-label="Search" aria-describedby="basic-addon2">
                 <button class="btn btn-outline-secondary" type="submit"> <i class="fa fa-search"></i></button>
             </div>
         </form>
-        <table class="table border">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>nom</th>
@@ -31,8 +32,8 @@
                         </td>
                         <td>{{ $user->role }}</td>
                         <td>
-                            <a data-toggle="modal" data-target="#updateModal" class="btn btn-primary" href="{{ route('admine.modifye', ['id' => $user->id]) }}" >modifier </a>
-                            <a onclick="alert('vous vouler suprimer ce utilisateur')" href="{{ route('admine.deleteUser', ['id' => $user->id]) }}" class="btn  btn-danger">suprimer</a>
+                            <a data-toggle="modal" data-target="#updateModal" class="btn btn-primary" href="{{ route('admine.modifye', ['id' => $user->id]) }}" ><i class="fa fa-edit  " style="color:#3498db"></i>modifier </a>
+                            <a onclick="alert('vous vouler suprimer ce utilisateur')" href="{{ route('admine.deleteUser', ['id' => $user->id]) }}" class="btn  btn-danger"><i class="fas fa-trash"></i>suprimer</a>
 
                         </td>
                     </tr>
@@ -132,6 +133,7 @@
                                 </div>
                             </div></div>
                         </div>
+    </div>
 
                         {{-- end modal --}}
 

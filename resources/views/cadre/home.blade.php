@@ -98,16 +98,19 @@
                     <td>{{ $fich->service->nom }}</td>
                     <td>{{ $fich->categorie->nom }}</td>
                     <td>
-                        <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
+                        <button  class="btn btn-dark text-bg-light btn-sm"> <a  href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank"></a> View</button>
                     </td>
                     <td>
-                        <a href="{{ route('fichiers.edit', ['id' => $fich->id]) }}" class="btn btn-sm btn-primary">Update</a>
+                        <div class="btn-group" role="group">
+                        <a
+                        data-toggle="modal" data-target="#updateModal" href="{{ route('fichiers.edit', ['id' => $fich->id]) }}" class="btn btn-sm btn-warning mx-2">  <i class="fa fa-edit " style="color:yellow"></i></a>
                         <form action="{{ route('fichiers.destroy', ['id' => $fich->id]) }}" method="POST" class="delete-form">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
+                </div>
                 </tr>
                 @endforeach
             </tbody>
@@ -245,31 +248,6 @@
         }
     </script>
 </script>
-     {{-- end script of delet button --}}
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    function filterByExtension(extension) {
-        // Get the file input element
-        var fileInput = document.getElementById('fileInput');
-
-        // Get the selected files
-        var files = fileInput.files;
-
-        // Filter files by extension
-        var filteredFiles = Array.from(files).filter(file => {
-            var fileName = file.name.toLowerCase();
-            return fileName.endsWith(extension);
-        });
-
-        // Display the filtered files using SweetAlert
-        Swal.fire({
-            title: 'Filtered Files',
-            html: 'Filtered Files: ' + filteredFiles.map(file => file.name).join('<br>'),
-            icon: 'info'
-            // You can customize the appearance and behavior of SweetAlert as needed
-        });
-    }
-</script>
     </div>
 @endsection

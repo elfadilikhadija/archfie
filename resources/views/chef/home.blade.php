@@ -102,9 +102,8 @@
                         <td>{{ $fich->service ? $fich->service->nom : 'N/A' }}</td>
                         <td>{{ $fich->categorie->nom }}</td>
                         <td>
-                            <a href="{{ asset('storage/pdfs/'.$fich->fichier) }}" target="_blank">View PDF</a>
+                            <button  class="btn btn-dark text-bg-light btn-sm"> <a  href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank"></a> View</button>
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
