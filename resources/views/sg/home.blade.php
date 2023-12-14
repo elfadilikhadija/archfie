@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row mb-3">
             <div class="col-md-3">
-                <form method="POST" action="{{ route('fichiers.search') }}" class="input-group">
+                <form method="POST" action="{{ route('.search') }}" class="input-group">
                     @csrf
                     <input type="text" class="form-control " name="query" placeholder="Rechercher..."
                         aria-label="Rechercher">
@@ -26,7 +26,7 @@
                         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                             @foreach ($categories as $category)
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('fichiers.filteredByCategory', $category->id) }}">
+                                    <a class="dropdown-item" href="{{ route('sg.filteredByCategory', $category->id) }}">
                                         {{ $category->nom }}
                                     </a>
                                 </li>
@@ -45,7 +45,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="divisionDropdown">
                             @foreach ($divisions as $division)
-                                <li>  <a class="dropdown-item" href="{{ route('admine.filteredByDivision', $division->id) }}">
+                                <li>  <a class="dropdown-item" href="{{ route('sg.filteredByDivision', $division->id) }}">
                                     {{ $division->nom }}
                                 </a>
                                 </li>
@@ -99,7 +99,9 @@
                         <td>{{ $fich->division->nom }}</td>
                         <td>{{ $fich->categorie->nom }}</td>
                         <td>
-                            <button  class="btn btn-dark text-bg-light btn-sm"> <a  href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank"></a> View</button>
+                            <a href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank" class="btn btn-dark text-light btn-sm" style="text-decoration: none;">
+                                View
+                            </a>
                         </td>
                         {{-- <td>
                             <div class="btn-group" role="group">

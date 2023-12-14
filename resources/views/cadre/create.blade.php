@@ -135,7 +135,7 @@
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="default-btn prev-step">Back</button></li>
 
-                                        <li> <button type="submit" class="btn btn-primary" onclick="return confirm('isert fichier')">Create Fichier</button></li>
+                                        <li> <button type="submit" class="btn btn-primary" onclick="showAlert('Bien créé')">Create Fichier</button></li>
                                     </ul>
                                 </form>
                                 </div>
@@ -197,6 +197,20 @@
             $(".nav-tabs li.active").removeClass("active");
             $(this).addClass("active");
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        function showAlert(message) {
+            Swal.fire({
+                position: "top-center",
+                icon: 'success',
+                title: message,
+                showConfirmButton: false,
+                timer: 4500
+            });
+        }
     </script>
 
 @endsection

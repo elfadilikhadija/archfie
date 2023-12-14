@@ -132,7 +132,7 @@
                                     </div>
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="default-btn prev-step">Back</button></li>
-                                        <li> <button type="submit"class="btn btn-primary">Creat</button></li>
+                                        <li> <button onclick="showAlert('Bien créé')" type="submit"class="btn btn-primary">Creat</button></li>
                                     </ul>
                         </form>
                     </div>
@@ -154,6 +154,7 @@
         </div>
         </div>
     </section>
+    @endsection
 @section('script')
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -196,17 +197,19 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (session()->has('success'))
-        <script>
-            Swal.fire({
-                position: "top-end",
-                icon: 'success',
-                title: "{{ session()->get('success') }}",
-                showConfirmButton: false,
-                timer: 2500
-            });
-        </script>
-    @endif
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    function showAlert(message) {
+        Swal.fire({
+            position: "top-center",
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 4500
+        });
+    }
+</script>
 @endsection
-@endsection
+

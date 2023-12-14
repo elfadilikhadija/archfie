@@ -33,9 +33,9 @@ Route::prefix('cadre')->group(function () {
     Route::delete('/{id}', [FichierController::class, 'destroy'])->name('fichiers.destroy');
     Route::get('/{id}/edit', [FichierController::class, 'edit'])->name('fichiers.edit');
     Route::patch('/{id}', [FichierController::class, 'update'])->name('fichiers.update');
-    Route::post('/search', [FichierController::class, 'search'])->name('fichiers.search');
-    Route::get('/category/{categoryId}', [FichierController::class, 'filteredByCategory'])->name('fichiers.filteredByCategory');
-    Route::get('/division/{division}', [FichierController::class, 'filteredByDivision'])->name('fichiers.filteredByDivision');
+    Route::post('/search', [CadreController::class, 'search'])->name('cadre.search');
+    Route::get('/category/{categoryId}', [CadreController::class, 'filteredByCategory'])->name('fichiers.filteredByCategory');
+    Route::get('/division/{division}', [CadreController::class, 'filteredByDivision'])->name('fichiers.filteredByDivision');
 });
 
 
@@ -64,7 +64,9 @@ Route::prefix('admin')->group(function () {
 // Sg Routes
 Route::prefix('sg')->group(function () {
     Route::get('/home', [SgController::class, 'index'])->name('sg.home');
-
+    Route::post('/search', [SgController::class, 'search'])->name('.search');
+    Route::get('/category/{categoryId}', [SgController::class, 'filteredByCategory'])->name('sg.filteredByCategory');
+    Route::get('/division/{division}', [SgController::class,'filteredByDivision' ])->name('sg.filteredByDivision');
 });
 
 // Chef Routes

@@ -101,8 +101,10 @@
                             <td>{{ optional($fich->division)->nom }}</td>
                             <td>{{ $fich->categorie->nom }}</td>
                             <td>
-                               <button  class="btn btn-dark text-bg-light btn-sm"> <a  href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank"></a> View</button>
-                            </td>
+                                <a href="{{ asset('storage/pdfs/' . $fich->fichier) }}" target="_blank" class="btn btn-dark text-light btn-sm" style="text-decoration: none;">
+                                    View
+                                </a>
+                                                            </td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a data-toggle="modal" data-target="#updateModal"

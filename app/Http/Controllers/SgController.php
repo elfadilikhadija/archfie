@@ -63,6 +63,29 @@ class SgController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public function filteredByCategory(Request $request, $categoryId)
         {
             if (Auth::check() && Auth::user()->role === 'sg') {
