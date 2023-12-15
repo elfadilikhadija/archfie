@@ -135,6 +135,21 @@
                         </div>
     </div>
 
-                        {{-- end modal --}}
 
+                       {{-- end modal --}}
+
+@endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@section('script')
+@if (session()->has('success'))
+    <script>
+        Swal.fire({
+            position: "top-center",
+            icon: 'success',
+            title: "{{ session()->get('success') }}",
+            showConfirmButton: false,
+            timer: 2500
+        });
+    </script>
+@endif
 @endsection

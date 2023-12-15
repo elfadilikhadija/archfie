@@ -7,37 +7,36 @@
     <link rel="stylesheet" href="{{ asset('asset/presentation.css') }}">
 </head>
 <body>
-
 <header class="hero">
-    
+    <a href="{{ route('admin.home') }}" class="kilo"><i
+        class="fa fa-home me-2"></i>Acceuill</a>
+<a href="{{ route('admine.register') }}" class="kilo">
+    <i class="fa fa-edit me-2" aria-hidden="true" ></i>Créer un compte</a>
+<a href="{{ route('admine.accounts') }}" class="kilo"><i
+        class="fa fa-users me-2"></i>Liste d'itulisateurs</a>
+<a href="{{ route('admine.create') }}"  class="kilo"><i
+        class="fa fa-plus me-2"></i>Ajouter une fichier</a>
+<a href="{{ route('admine.archife') }}" class="kilo"><i
+        class="fa fa-archive me-2"></i>archife</a>
   </header>
-  <ul class="cards">
-    <li class="title">
+ <div class="left">
+    <ul class="cards">
+        <li class="card card-1"><img src="{{ asset('images/R.png') }}"/>
+        </li>
+        <li class="card card-2"><img src="{{ asset('images/folders.png') }}"/>
+        </li>
+        <li class="card card-3"><img src="{{ asset('images/R.png') }}"/>
+        </li>
+      </ul>
+ </div>
 
-    </li>
-    <li class="card card-1"><img src="{{ asset('images/R.png') }}"/>
-      <div class="content">
-        <h1>Card 1 Title</h1>
-        <p>Card description</p>
-      </div>
-    </li>
-    <li class="card card-2"><img src="{{ asset('images/jj.jpg') }}"/>
-      <div class="content">
-        <h1>Card 2 Title</h1>
-        <p>Card description</p>
-      </div>
-    </li>
-    <li class="card card-3"><img src="{{ asset('images/R.png') }}"/>
-      <div class="content">
-        <h1>Card 3 Title</h1>
-        <p>Card description</p>
-      </div>
-    </li>
-  </ul>
-  <hr/>
 <div id="pre">
-    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis modi accusamus autem pariatur. Magni, laudantium error provident rerum sequi iusto cupiditate consequuntur blanditiis aut hic ipsa quisquam id, adipisci doloribus!</h2>
-    <button >more info</button>
+    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+         Facilis modi accusamus autem pariatur.
+          Magni, laudantium error provident rerum sequi iusto
+           cupiditate consequuntur blanditiis aut hic ipsa quisquam id,
+           adipisci doloribus!</h2>
+    <button  class="botona">more info</button>
 </div>
 </body>
 </html>

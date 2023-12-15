@@ -1,23 +1,24 @@
 *, *:before, *:after {
     box-sizing: border-box;
   }
-
-
-  #pre{
-   display: flex;
-   float: left;
- 
-
-  }
- #pre  p{
-    font-size: 18px ;
-    justify-content: center;
-    align-items: center;
-    letter-spacing: 0.5;
-    font-weight: 700;
+#pre{
     color: #000;
- }
-
+    overflow: hidden;
+   margin-top: 150px;
+    width: 390px;
+   font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    left: 100px;
+}
+#pre .botona{
+    padding: 10px 40px;
+    margin-top: 25px;
+    margin-left: 80px;
+    border: none;
+    background: linear-gradient(to right, #fbaf2c, #ccd211);
+    border-radius: 5px;
+    transition: 0.3s;
+}
   body {
     font-size: 14px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -33,19 +34,21 @@
         #ddfaef
       );
   }
+ .kilo{
+   margin-right: 15px;
+   list-style: none;
+   text-decoration: none;
+   color: #000;
+   font-weight: 700;
+ }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-  }
 
-  header.hero {
-    background: rgba(255, 255, 255, 0.6);
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 4px solid rgba(255, 255, 255, 0.6);
-    margin: 0 0 20px;
+ header{
+    margin-top: 15px;
+ }
+
+  .hero {
+  margin-left: 700px;
   }
   header.hero h1 {
     font-size: 3em;
@@ -53,37 +56,29 @@
     margin: 0 0 5px;
   }
 
-  hr {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    padding: 0 0 20px;
+
+  .left{
+    display: flex;
+    float: right;
   }
 
   ul.cards {
     width: 660px;
-    margin: 0 auto 20px;
+    margin: 0 auto 70px;
     height: 300px;
     list-style-type: none;
     position: relative;
-    padding: 20px 0;
+    padding: 90px 0;
     cursor: pointer;
-    display: flex;
-    float: right;
-  }
-  ul.cards li.title {
-    margin: 0 0 20px;
-  }
-  ul.cards li.title h2 {
-    font-weight: 700;
   }
   ul.cards li.card {
     background: #FFF;
     overflow: hidden;
-    height: 200px;
-    width: 200px;
+    height: 350px;
+    width: 350px;
     border-radius: 10px;
     position: absolute;
-    left: 0px;
+    left: 100px;
     box-shadow: 1px 2px 2px 0 #aaa;
     -webkit-transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.12);
     transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.12);

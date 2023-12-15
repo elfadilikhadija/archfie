@@ -1,4 +1,5 @@
 @extends('admine.layout')
+
 @section('content')
     <div class="container">
         <div class="row mb-3">
@@ -234,25 +235,40 @@
             </ul>
         </nav>
         {{-- end of pagination --}}
-     {{-- start script of delet button --}}
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function deletfichier(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById(id).submit();
-            }
-        });
-    }
-
-</script>
     </div>
+@endsection
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@section('script')
+@if (session()->has('success'))
+    <script>
+        Swal.fire({
+            position: "top-center",
+            icon: 'success',
+            title: "{{ session()->get('success') }}",
+            showConfirmButton: false,
+            timer: 2500
+        });
+    </script>
+@endif
+ {{-- start script of delet button --}}
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+     function deletfichier(id) {
+         Swal.fire({
+             title: 'Are you sure?',
+             text: "You won't be able to revert this!",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Yes, delete it!'
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 document.getElementById(id).submit();
+             }
+         });
+     }
+
+ </script>
 @endsection

@@ -26,9 +26,7 @@ class AdminController extends Controller
     public function listAcc()
     {
         if (Auth::check() && Auth::user()->role === 'admin') {
-            // i safaa add
             $divisions = Division::all();
-            // i safaa add
             $services = Service::all();
             $users = User::all();
             return view('admine.acounts', compact('users', 'services','divisions'));
